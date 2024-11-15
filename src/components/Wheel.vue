@@ -249,7 +249,6 @@ export default {
   max-height: 100%;
   max-width: 100%;
   overflow: hidden;
-  background: ;
 }
 .wheels {
   margin: 0;

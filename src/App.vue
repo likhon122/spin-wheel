@@ -107,7 +107,6 @@ input[type='number']:focus {
   font-weight: 500;
   border: 1px solid #006a67;
   transition: background-color 0.2s, color 0.2s;
-  margin-bottom: 10px;
 }
 
 .spinButton:hover {

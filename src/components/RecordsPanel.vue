@@ -50,7 +50,7 @@ export default {
   top: 0;
   bottom: 0;
   min-width: 250px;
-  background-color: rgba(241, 244, 249, 0.8);
+  background-color: rgb(241, 244, 249);
   text-align: left;
   overflow: hidden;
   z-index: 5;

@@ -38,7 +38,6 @@ body {
   width: 100vw; /* Ensure full viewport width */
   color: #4a4a4a; /* Soft charcoal color for text */
   position: relative; /* Make sure ::before is positioned correctly */
-  overflow: hidden; /* Hide overflow caused by blurred effect */
 }
 
 /* Create the blurred background */
@@ -107,6 +106,7 @@ input[type='number']:focus {
   font-weight: 500;
   border: 1px solid #006a67;
   transition: background-color 0.2s, color 0.2s;
+
 }
 
 .spinButton:hover {

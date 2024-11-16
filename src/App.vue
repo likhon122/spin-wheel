@@ -34,29 +34,17 @@ body {
   font-family: 'Quicksand', sans-serif; /* Friendly and clean font choice */
   font-size: 15px;
   margin: 0;
-  height: 100vh; /* Ensure full viewport height */
-  width: 100vw; /* Ensure full viewport width */
-  color: #4a4a4a; /* Soft charcoal color for text */
-  position: relative; /* Make sure ::before is positioned correctly */
-}
-
-/* Create the blurred background */
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
   height: 100vh;
+  color: #4a4a4a;
+  position: relative;
   background: linear-gradient(to right, #7babdb, #9cd7c1, #98d48e);
-  background-size: cover;
-  filter: blur(15px); /* Apply blur effect */
-  z-index: -1; /* Ensure it stays behind the content */
+  overflow-x: hidden;
 }
 
 #app {
   text-align: center;
   margin: 0;
+  padding: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -106,7 +94,6 @@ input[type='number']:focus {
   font-weight: 500;
   border: 1px solid #006a67;
   transition: background-color 0.2s, color 0.2s;
-
 }
 
 .spinButton:hover {

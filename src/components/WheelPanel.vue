@@ -35,7 +35,16 @@
       </div>
     </div>
 
+    <!-- Background Image -->
     <img class="background-image" :src="background ? background : null" />
+
+    <!-- Popup for winning prize -->
+    <div v-if="showPopup" class="popup wow-popup">
+      <div class="popup-content">
+        <div class="popup-icon">🎉</div>
+        <div class="popup-message">{{ popupMessage }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,7 +64,9 @@ export default {
       showRecords: false,
       spinning: false,
       spinText: 'Spin!',
-      resultText: 'Ready. Get set.'
+      resultText: 'Ready. Get set.',
+      popupMessage: '', // Holds the message for the popup
+      showPopup: false // Controls the popup visibility
     };
   },
   computed: mapState({
@@ -80,6 +91,15 @@ export default {
       this.spinning = false;
       this.spinText = 'Spin again!';
       this.resultText = this.winningText.replace('%s', prize.name);
+
+      // Display popup message
+      this.popupMessage = `Congratulations! You won ${prize.name}`;
+      this.showPopup = true;
+
+      // Hide popup automatically after 1 second
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 2000);
     },
 
     startSpin() {
@@ -102,9 +122,9 @@ export default {
   min-height: 100%;
   height: 100vh;
   width: 100vw;
-  width: 100%;
-  padding: 0px 5px 0px 5px;
+  padding: 0px 10px 0px 0px;
 }
+
 .wheel-panel-content {
   position: relative;
   display: flex;
@@ -115,6 +135,7 @@ export default {
   height: 100vh;
   z-index: 2;
 }
+
 .wheel-header-area {
   display: flex;
   flex-direction: column;
@@ -147,7 +168,7 @@ export default {
 
 /* Logo styling */
 .project-logo {
-  width: 80px; /* Adjust size as needed */
+  width: 80px;
   margin-top: 10px;
 }
 
@@ -169,13 +190,95 @@ export default {
   display: flex;
   justify-content: center;
 }
+
 .wheel-footer {
   padding: 12px;
   font-size: 18px;
   border-radius: 3px;
 }
+
 .wheel-result {
   color: black;
   margin-bottom: 6px;
+}
+
+/* Popup Styling */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Popup */
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: linear-gradient(135deg, #006a67, #03c2bb);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: center;
+  font-size: 22px;
+  animation: popup-show 0.8s ease forwards, popup-glow 1s infinite alternate;
+}
+
+/* Popup entrance animation */
+@keyframes popup-show {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Inner content for the popup */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Emoji or Icon styling */
+.popup-icon {
+  font-size: 50px;
+  animation: icon-bounce 0.5s ease-in-out infinite;
+}
+
+/* Message styling */
+.popup-message {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Icon bounce animation */
+@keyframes icon-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 </style>

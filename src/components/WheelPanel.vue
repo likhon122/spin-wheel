@@ -93,7 +93,14 @@ export default {
       this.resultText = this.winningText.replace('%s', prize.name);
 
       // Display popup message
-      this.popupMessage = `Congratulations! You won ${prize.name}`;
+      console.log(prize.name);
+      this.popupMessage =
+        prize.name === '-1 SPIN'
+          ? 'You lost one Spin!'
+          : prize.name === 'BANKRUPT'
+          ? 'You are lost all. You are BANKRUPT!'
+          : `You won ${prize.name}!`;
+
       this.showPopup = true;
 
       // Hide popup automatically after 1 second
